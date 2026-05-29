@@ -55,6 +55,7 @@ public class SecurityConfig {
         .exceptionHandling(exception -> exception.authenticationEntryPoint(authEntryPointJwt))
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> auth
+          .requestMatchers("/healthcheck").permitAll()
             .requestMatchers("/api/auth/**").permitAll()
 
             .requestMatchers(HttpMethod.GET, "/anuncios", "/anuncio/**", "/files/**")
