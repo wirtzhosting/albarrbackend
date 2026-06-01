@@ -12,16 +12,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Profile("dev")  // Esta configuración se aplicará solo en el perfil de desarrollo
 public class CorsConfigDev {
 
-    @Value("${app.websocket.allowed-origin}")
-    private String allowedOrigin;
-
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(allowedOrigin)
+                        .allowedOrigins("http://localhost:5173")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
                         .allowCredentials(true);
